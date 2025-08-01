@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Grid Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-areas: 
+                "section1 section1 section2 section2"
+                "section1 section1 section3 section4"
+                "section5 section6 section7 section7";
+            gap: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 80vh;
+            min-height: 600px;
+        }
+
+        .grid-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grid-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .grid-item:hover::before {
+            opacity: 1;
+        }
+
+        .section1 {
+            grid-area: section1;
+            background: linear-gradient(135deg,  #c93a9e 100%);
+        }
+
+        .section2 {
+            grid-area: section2;
+            background: linear-gradient(135deg,  #cfe226 100%);
+        }
+
+        .section3 {
+            grid-area: section3;
+            background: linear-gradient(135deg, #bb29e8 100%);
+        }
+
+        .section4 {
+            grid-area: section4;
+            background: linear-gradient(135deg, #83b2b9 100%);
+        }
+
+        .section5 {
+            grid-area: section5;
+            background: linear-gradient(135deg, #8c8886 100%);
+        }
+
+        .section6 {
+            grid-area: section6;
+            background: linear-gradient(135deg, #4ac755 100%);
+        }
+
+        .section7 {
+            grid-area: section7;
+            background: linear-gradient(135deg, #2170b5 100%);
+        }
+
+
+        @media screen and (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr 1fr 1fr;
+                grid-template-areas: 
+                    "section1 section1 section2"
+                    "section1 section1 section3"
+                    "section4 section5 section6"
+                    "section7 section7 section7";
+                height: 90vh;
+                min-height: 500px;
+            }
+
+            .grid-item {
+                font-size: 2.5rem;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+
+  
+        @media screen and (max-width: 480px) {
+            .grid-container {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(6, 1fr);
+                grid-template-areas: 
+                    "section1 section1"
+                    "section1 section1"
+                    "section2 section3"
+                    "section4 section5"
+                    "section6 section7"
+                    "section7 section7";
+                height: 100vh;
+                min-height: 600px;
+                gap: 8px;
+            }
+
+            .grid-item {
+                font-size: 2rem;
+            }
+
+            body {
+                padding: 10px;
+            }
+        }
+        @media screen and (max-width: 320px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(7, 1fr);
+                grid-template-areas: 
+                    "section1"
+                    "section1"
+                    "section2"
+                    "section3"
+                    "section4"
+                    "section5"
+                    "section6"
+                    "section7";
+                gap: 6px;
+            }
+
+            .grid-item {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Large Desktop */
+        @media screen and (min-width: 1200px) {
+            .grid-container {
+                max-width: 1400px;
+                height: 85vh;
+            }
+
+            .grid-item {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-item section1">1</div>
+        <div class="grid-item section2">2</div>
+        <div class="grid-item section3">3</div>
+        <div class="grid-item section4">4</div>
+        <div class="grid-item section5">5</div>
+        <div class="grid-item section6">6</div>
+        <div class="grid-item section7">7</div>
+    </div>
+</body>
+</html>
